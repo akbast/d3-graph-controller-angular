@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { GraphController, defineGraphConfig, defineNode, defineLink, defineGraph, GraphLink, GraphNode } from 'd3-graph-controller';
 
 export type CustomType = 'primary' | 'secondary'
@@ -21,7 +21,7 @@ export class AppComponent {
   title = 'd3-graph-controller-angular';
 
     // Any HTMLDivElement can be used as the container
-    @ViewChild("graph", { static: false }) container!: HTMLDivElement; 
+    @ViewChild('graph', { static: false }) container!: ElementRef<HTMLDivElement>;
 
     ngOnInit(): void {
       
@@ -91,6 +91,6 @@ export class AppComponent {
         links: [aToB],
       })
   
-      this.controller = new GraphController(this.container, graph, config)
+      this.controller = new GraphController(this.container.nativeElement, graph, config)
     }
 }
